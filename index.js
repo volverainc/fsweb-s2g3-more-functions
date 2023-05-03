@@ -25,6 +25,21 @@ function dosyaAdiniBul(path) {
   return pathAdresi[pathAdresi.length - 1]
 }
 
+function isVideo(path) {
+  // uzantiyi aliriz
+  // kontrol ederiz [avi, mov, mp4]
+  let pathAdresi = path.split(".");
+  const uzanti = pathAdresi[pathAdresi.length - 1]
+  const videoUzantilari = ["avi","mov","mp4"];
+  if(videoUzantilari.includes(uzanti)){
+    return true
+  }else {
+    return false
+  }
+
+}
+let path = "C:/Users/johnsmith/Music/Beet.hoven_5.mp4"
+console.log(isVideo(path))
 /*
   GÖREV 2
   - Input:  Bir sayı arrayini parametre olarak alacak bir fonksiyon oluştur.
@@ -55,9 +70,7 @@ function ortalamaBul(sayilar) {
   return result / sayilar.length
 }
 
-//let sayilar = [1,2,3,4,5]
-//let sayilarDizin = ortalamaBul(sayilar)
-//console.log(sayilarDizin)
+ //console.log(ortalamaBul([109, 216, 288, 143, 71, 185, -278, 194, 5]))
 /*
   GÖREV 3
   - Input:  Bir sayı arrayini ve ortalama bulmaya yarayacak bir fonksiyonu parametre olarak alacak bir fonksiyon oluştur.
@@ -78,23 +91,12 @@ function ortalamaBul(sayilar) {
   örnek output: [109, 216, 288, 143, 185, 194]
 */
 
-function ortalamadanBuyukleriBul(sayilar, ortalama) {
-  if (sayilar.length === 0) {
-    return null;
+function ortalamadanBuyukleriBul(sayilar) {
+  const ortalamaHesabi = ortalamaBul(sayilar);
+  return sayilar.length === 0 ? null : sayilar.filter(sayi => sayi >= ortalamaHesabi)
   }
 
-  const ortalamaHesabi = ortalama(sayilar);
-  const buyukEsitIndex = [];
-
-  for (let i = 0; i < sayilar.length; i++) {
-    if (sayilar[i] >= ortalamaHesabi) {
-      buyukEsitIndex.push(sayilar[i]);
-    }
-  }
-
-  return buyukEsitIndex;
-}
-
+  console.log(ortalamadanBuyukleriBul([109, 216, 288, 143, 71, 185, -278, 194, 5]))
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
   console.log("Kodlar sorunsuz çalışıyor!");
